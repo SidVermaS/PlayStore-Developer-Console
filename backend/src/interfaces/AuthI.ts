@@ -1,0 +1,5 @@
+interface RegisterI {
+    
+}
+
+export {RegisterI}
