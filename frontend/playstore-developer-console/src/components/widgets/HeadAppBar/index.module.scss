@@ -1,0 +1,36 @@
+@import '../../../utilities/styles/index.scss';
+
+.background {
+    :global(.MuiAppBar-colorPrimary)    {
+        
+    z-index: 9999;
+        background: $secondaryColor;
+    }
+    :global(.MuiSvgIcon-root)   {
+        fill: $commonWhite;
+        width: 30px;
+        height: 30px;
+    }
+    :global(.MuiTypography-root)   {
+        margin-left: 15px;
+    }
+    .userIconButton {
+        margin-left: auto;
+    }
+ 
+}
+.openDrawer {
+    :global(.MuiAppBar-root)    {
+        width: calc(100% - 300px);
+    }
+}
+.closeDrawer    {
+    :global(.MuiAppBar-root)    {
+       
+        width: 100%;
+    }
+}
+
+.menu   {
+    z-index: 9999999;
+}

@@ -1,0 +1,22 @@
+@import '../../../utilities/styles/index.scss';
+
+.background {
+
+    .browseBtn  {
+        :global(.MuiButton-root)    {
+            background: #dddcdc;
+            font-size: 14px;
+            padding: 4px 12px;
+            text-transform: none;
+        }
+    }
+    .setFileTitle   {
+        font-size: 10px;
+    }
+ 
+}
+.fileInputDivider   {
+    :global(.MuiDivider-root)   {
+        background: $inputBorderColor;
+    }
+}

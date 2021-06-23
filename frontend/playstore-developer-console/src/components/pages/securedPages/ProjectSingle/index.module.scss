@@ -1,0 +1,55 @@
+@import '../../../../utilities/styles/index.scss';
+
+.background {
+    .body   {
+        padding: 20px;
+        .publishedOn    {            
+            font-size: 15px;
+            .dateTime   {
+                font-weight: 700;
+            }
+        }
+        
+
+        .headingTitle {
+            font-size: 17px;
+            font-weight: 600;
+        }
+        .actions    {
+          
+            .uploadNewAPKBtn   {
+                :global(.MuiButton-root)   {                
+                    @extend .rectangleBtn;
+                    &:hover {
+                        background: $longButtonColor;
+                    }
+                }
+                
+            }
+            .deleteProjectBtn   {
+                :global(.MuiButton-root)   {           
+                    @extend .rectangleBtn;
+                    background: $unsecuredPageBackground;
+                    color: $commonBlack;
+                    font-size: 12px;
+                    font-weight: 600;
+                    &:hover {
+                        background: $unsecuredPageBackground;
+                    }
+                }
+            }
+        }
+        .horizontalDivider  {
+            margin: 20px 0;
+        }
+
+        .subHeading {
+            color: $commonGrey;
+        }
+        .subHeadingDetails {
+            font-size: 20px;
+            font-weight: 600;
+            color: $commonBlack;
+        }
+    }
+}

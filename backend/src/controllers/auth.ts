@@ -31,7 +31,8 @@ export const register=async (req: Request<UserI>, res: Response<any>)=>    {
 
 export const login=async (req: Request<UserI>, res: Response<any>)=>   {
     try {
-        const {email,password}:UserI=req.body
+        const {email,password}:UserI=req.body            
+          
         if(await User.findOne({email}))    {
             const user=await User.findOne({email, password: md5(password.toString())}).select('_id name email')
             const privateKey='secretkey'
@@ -53,12 +54,12 @@ export const verifyToken=(req: Request<any>, res: Response<any>, next: any)=>  {
         const privateKey='secretkey'
         jwt.verify(bearerToken, privateKey, (error, authData)=>   {
             if(error)   {
-                return res.status(401).json({message: '1 Unauthorized access'})
+                return res.status(401).json({message: 'Unauthorized access'})
             }   else    {
                 next()
             }
         })
     }   else    {
-        return res.status(401).json({message: '2 Unauthorized access'})
+        return res.status(401).json({message: 'Unauthorized access'})
     }
 }

@@ -1,0 +1,24 @@
+@import './utilities/styles/index.scss';
+
+.snackBarZIndex {
+    z-index: 2147483647 !important;
+}
+.snackBar   {
+    :global(.MuiSnackbar-root) {
+        @extend .snackBarZIndex;
+    }
+}
+.snackBarSucess   {
+    :global(.MuiSnackbarContent-root) {
+        background-color: $longButtonColor !important;
+        justify-content: center !important;
+        @extend .snackBarZIndex;
+    }
+}
+.snackBarError   {    
+    :global(.MuiSnackbarContent-root) {
+        background-color: $snackbarErrorColor !important;
+        justify-content: center !important;
+        @extend .snackBarZIndex;
+    }
+}

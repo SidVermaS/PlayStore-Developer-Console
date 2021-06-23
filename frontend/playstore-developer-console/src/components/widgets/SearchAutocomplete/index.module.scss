@@ -1,0 +1,20 @@
+@import '../../../utilities/styles/index.scss';
+
+.background {
+    margin-left: 50px;
+    :global(.MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"])    {
+        padding: 0 10px;
+    }
+    :global(.MuiInputBase-root) {
+        background: #518ee9;
+        color: $commonWhite;
+        width: 700px;
+    }
+    .searchIcon {
+        :global(.MuiSvgIcon-root)   {
+            fill: $commonWhite;
+            width: 25px;
+            height: 25px;
+        }
+    }
+}

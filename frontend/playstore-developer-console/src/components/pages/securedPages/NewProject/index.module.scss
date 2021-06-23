@@ -1,0 +1,15 @@
+@import '../../../../utilities/styles/index.scss';
+
+.background {
+    background: $unsecuredPageBackground;
+    height: 100vh;
+    padding: 50px 450px 80px 450px;    
+    .cardBackground {
+        background: $commonWhite;
+        height: 80vh;
+        padding: 0 100px;
+        .cardContent    {
+            transform: translateY(10%);
+        }
+    }
+}

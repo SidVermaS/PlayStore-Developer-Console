@@ -20,10 +20,11 @@ export const create=async (req: Request<any>, res: Response<any>)=>    {
                     url,
                     versions:[{
                         version_no: version_no,
-                        // date: 
                     }]
                 })
                 const savedProject=await project.save()
+                req.body._id=savedProject._id         
+               
                 if(savedProject)    {
                     return res.status(201).json({message: 'Successfully saved the project', project: savedProject})
                 }   else    {
@@ -41,21 +42,28 @@ export const create=async (req: Request<any>, res: Response<any>)=>    {
 export const update=async (req: Request<any>, res: Response<any>)=>  {
     try {
         const {_id, version_no}=req.body
-
+        console.log('~~~ update: ',_id, version_no)
         const versions=await Project.findById(_id, { _id, versions: {$slice: -1} })
         const lastVersionNo=versions?.['versions']?.[0]['version_no']
         if(semver.lt(lastVersionNo, version_no))    {
-            const updatedProject=await Project.findByIdAndUpdate(_id, {
-                $push:  {
-                    versions:   {
-                        version_no
+         
+            const fileUrl:String=await uploadFile(req)
+            if(fileUrl) {
+                const updatedProject=await Project.findByIdAndUpdate(_id, {
+                    $push:  {
+                        versions:   {
+                            version_no
+                        }
                     }
+                })
+            
+                if(updatedProject)  {
+                    return res.status(200).json({message: 'Successfully updated the project', project: updatedProject})
+                }   else    {
+                    return res.status(400).json({message: '1 Failed to update the project'})
                 }
-            })
-            if(updatedProject)  {
-                return res.status(200).json({message: 'Successfully updated the project', project: updatedProject})
             }   else    {
-                return res.status(400).json({message: 'Failed to update the project'})
+                return res.status(400).json({message: '2 Failed to update the project'})
             }
         }   else    {
             return res.status(400).json({message: 'New version should be lesser than the old version', })
@@ -68,8 +76,30 @@ export const update=async (req: Request<any>, res: Response<any>)=>  {
 
 export const fetchAll=async (req: Request<any>, res: Response<any>)=>   {
     try {
-        const {user_id}=req.params
-        const projects = await Project.find({user_id}).select('_id title url user_id')
+        let {user_id}=req.params
+        user_id=Types.ObjectId(user_id)
+        const projects=await Project.aggregate([
+            {
+                $project:   {
+                    _id: 1,
+                    title: 1,
+                    url: 1,
+                    user_id: 1,
+                    total_versions: {
+                        $size: '$versions',
+                    },
+                    latest_version:   {
+                        $arrayElemAt: ['$versions', -1]
+                    }
+                }
+            },
+            {
+                $match: {
+                    user_id
+                }
+            }
+        ])
+
         if(projects)    {
             return res.status(200).json({message: 'Successfully fetched the projects', projects})
         }   else    {
@@ -82,7 +112,8 @@ export const fetchAll=async (req: Request<any>, res: Response<any>)=>   {
 
 export const fetch=async (req: Request<any>, res: Response<any>)=>  {
     try {
-        const {user_id, _id}=req.query
+        let {user_id, _id}=req.query
+        
         const project = await Project.find({_id, user_id})
         if(project) {
             return res.status(200).json({message: 'Successfully fetched the project', project:project[0]})
@@ -113,7 +144,7 @@ export const search=async (req: Request<any>, res: Response<any>)=> {
        
         const {search_text, user_id}=req.query
 
-        const projects=await Project.find({$text: {$search: search_text?.toString() || ''},user_id}).select('_id title')
+        const projects=await Project.find({user_id,title: {$regex: `^${search_text}`, $options: 'i'}}).select('_id title')
         if(projects)    {
             return res.status(200).json({message: 'Successfully searched the projects', projects})
         }   else    {

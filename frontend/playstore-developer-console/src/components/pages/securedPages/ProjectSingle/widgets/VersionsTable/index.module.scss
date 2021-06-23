@@ -1,0 +1,15 @@
+@import '../../../../../../utilities/styles/index.scss';
+
+.table  {
+    margin-top: 20px;
+    .tableHead  {
+        .tableRow   {
+            .tableHeadCell  {
+                :global(.MuiTableCell-root) {
+                    font-weight: 600;
+                    color: $commonGrey;
+                }
+            }
+        }
+    }
+}

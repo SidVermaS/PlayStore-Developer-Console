@@ -1,0 +1,36 @@
+@import '../../../../utilities/styles/index.scss';
+
+.background {
+    background: $unsecuredPageBackground;
+    height: 100vh;
+    padding: 75px 150px;
+    
+    .cardBackground {
+        height: 75vh;
+        .leftPanel  {
+            border-top-left-radius: $cardBorderRadius;
+            border-bottom-left-radius: $cardBorderRadius;
+            background: $longButtonColor;
+            color: $commonWhite;
+            padding: 0 90px;
+            .leftPanelDescription   {
+                font-size: 18px;
+            }
+        }
+        .rightPanel {           
+            border-top-right-radius: $cardBorderRadius;
+            border-bottom-right-radius: $cardBorderRadius;
+            background: $rightPanelBackground;
+           
+            .rightPanelContent  {
+                margin: 0 100px;     
+            }
+            .rightPanelVerticalLogin {
+                transform: translateY(45%);
+            }
+            .rightPanelVerticalRegister {
+                transform: translateY(15%);
+            }
+        }
+    }
+}

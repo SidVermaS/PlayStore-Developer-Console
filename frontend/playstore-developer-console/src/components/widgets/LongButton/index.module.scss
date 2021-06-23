@@ -1,0 +1,14 @@
+@import '../../../utilities/styles/index.scss';
+
+.background {
+    :global(.MuiButton-root)   {
+        text-transform: none;
+        background: $longButtonColor;
+        color: $commonWhite;
+        border-radius: 25px;
+        width: 100%;
+        &:hover {
+            background: $longButtonColor;
+        }
+    }
+}

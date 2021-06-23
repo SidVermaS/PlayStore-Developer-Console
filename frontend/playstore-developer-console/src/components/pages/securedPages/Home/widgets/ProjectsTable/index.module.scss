@@ -1,0 +1,27 @@
+@import '../../../../../../utilities/styles/index.scss';
+
+
+.table  {
+    margin: 40px 40px 0 40px;
+    // .tableHeadCell  {
+    //     :global(.MuiTableCell-root) {
+    //         background: $commonWhite;
+    //         border-top: 1px solid $tableBorderColor;
+    //         border-bottom: 1px solid $tableBorderColor;
+    //         color: $inputBorderColor;
+    //         font-weight: 600;
+    //         font-size: 15px;
+    //         padding: 10px 16px;
+    //     }
+    // }
+    .appLogoImage   {
+        width: 20px;
+        height: 20px;
+    }
+    .tableCell  {
+        cursor: pointer;
+        :global(.MuiTableCell-root) {            
+            font-size: 14px;
+        }
+    }
+}

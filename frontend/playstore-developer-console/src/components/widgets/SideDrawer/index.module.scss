@@ -1,0 +1,30 @@
+@import '../../../utilities/styles/index.scss';
+
+.background {
+
+    :global(.MuiDrawer-root)    {
+        width: 400px;
+    }
+    .sideDrawerBackIcon {
+        :global(.MuiSvgIcon-root)   {
+            fill: #808080;
+        }
+    }
+    .sideDrawerIcon {
+        :global(.MuiSvgIcon-root)   {
+            fill: gray;
+            width: 30px;
+            height: 30px;
+        }
+    }
+}
+.openDrawer {
+    :global(.MuiDrawer-paper)   {
+        width: 300px;
+    }
+}
+.closeDrawer {
+    :global(.MuiDrawer-paper)   {
+        width: 80px;
+    }
+}

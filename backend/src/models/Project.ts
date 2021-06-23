@@ -35,5 +35,4 @@ const ProjectScehma=new Schema<ProjectI>({
         }
     ],
 })
-ProjectScehma.index({title: 'text'})
 export default model('projects', ProjectScehma)
