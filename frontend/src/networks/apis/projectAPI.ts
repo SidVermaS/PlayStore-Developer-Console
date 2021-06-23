@@ -1,5 +1,5 @@
 import api from '../api'
-import {projectsearch,project,projectall,projectsingle} from '../urls'
+import {projectsearch,project,projectall,projectsingle,projectdownload} from '../urls'
 export const getprojectsearchAPI=async (values: any)=>{
     try {
         return await api.get(`${projectsearch}?${values}`)
@@ -71,9 +71,24 @@ export const getprojectsingleAPI=async (values: any)=>{
         return { status: 500, body: 'Failed to connect'}
     }
 }
-export const deleteprojectAPI=async (value: any)=>{
+export const deleteprojectAPI=async (values: any)=>{
     try {
-        return await api.delete(`${project}/${value}`)
+        return await api.delete(`${project}?${values}`)
+        .then(response=>{
+                return { status: response.status, body: response.data }
+
+        }).catch(err=>  {
+            return { status: err.response.status, body: err.response.data }
+        })
+    }
+    catch(err)  {
+        return { status: 500, body: 'Failed to connect'}
+    }
+}
+
+export const postprojectdownloadAPI=async (values: any)=>  {
+    try {
+        return await api.post(projectdownload,values, {responseType: 'blob'})
         .then(response=>{
                 return { status: response.status, body: response.data }
 

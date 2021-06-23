@@ -12,8 +12,8 @@ app.use(express.json())
 app.use(fileUpload())
 
 app.use('/api', authRouter)
-
 app.use('/api', verifyToken, projectRouter)
+
 
 const PORT=process.env.PORT || 5000
 

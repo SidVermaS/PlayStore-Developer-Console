@@ -27,12 +27,12 @@ const ProjectSingle = (props: any) => {
 
     const addVersion=async (formData: FormData)=> {
         try {
-            console.log('~~~ addVersion: ',formData, ' pj: ',project)
+            formData.append('user_id', props.user._id)
             formData.append('_id', project?._id!)
             const {status, body}=await patchprojectAPI(formData)
             if(status===200)    {
                 props.setMessage({type: SUCCESS_MESSAGE, text: body.message})
-                history.push(path.Home)
+                fetchData()
             }   else    {
                 props.setMessage({type: ERROR_MESSAGE, text: body.message})
             }
@@ -44,8 +44,7 @@ const ProjectSingle = (props: any) => {
 
     const deleteProject=async ()=>  {
         try {
-          
-            const {status, body}=await deleteprojectAPI(project?._id)
+            const {status, body}=await deleteprojectAPI(`user_id=${props.user._id}&_id=${project?._id}`)
             if(status===200)    {
                 props.setMessage({type: SUCCESS_MESSAGE, text: body.message})
                 history.push(path.Home)
@@ -129,7 +128,7 @@ const ProjectSingle = (props: any) => {
                 <div className={styles.headingTitle}>
                     PREVIOUS APKS
                 </div>
-                <VersionsTable versions={project?.versions}  />
+                <VersionsTable versions={project?.versions} user_id={props.user._id} _id={project?._id}  />
             </div>
         </div>
     )

@@ -5,7 +5,8 @@ const projectsearch='/project/search'
 const project='/project'
 const projectall='/project/all'
 const projectsingle='/project/single'
+const projectdownload='/project/download'
 
 export {
-    baseURL,authlogin,authregister,projectsearch,project,projectall,projectsingle,
+    baseURL,authlogin,authregister,projectsearch,project,projectall,projectsingle,projectdownload,
 }
