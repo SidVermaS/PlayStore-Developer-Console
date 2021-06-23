@@ -42,7 +42,7 @@ const AddDialog:ForwardRefRenderFunction<AddDialogProps,AddDialogRefs> = ({addVe
                     formData.append('version_no', values.version_no)
                     formData.append('file',fileRef.current.getFile())
                     addVersion(formData)
-                    handleClose()
+                   
                 } 
             }
     })

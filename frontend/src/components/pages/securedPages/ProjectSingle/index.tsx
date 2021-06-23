@@ -32,7 +32,9 @@ const ProjectSingle = (props: any) => {
             const {status, body}=await patchprojectAPI(formData)
             if(status===200)    {
                 props.setMessage({type: SUCCESS_MESSAGE, text: body.message})
+                addDialogRef.current?.toggle(project?.versions[project?.versions.length-1].version_no)
                 fetchData()
+                
             }   else    {
                 props.setMessage({type: ERROR_MESSAGE, text: body.message})
             }
