@@ -39,7 +39,7 @@ const FileInput:ForwardRefRenderFunction<FileInputForwardProps, FileInputForward
     return (
         <>
         <div className={`${styles.background} d-flex align-items-center`}>
-            <input ref={fileRef} type='file' hidden onChange={onChange}   />
+            <input ref={fileRef} type='file' hidden onChange={onChange} accept='.apk'   />
             <div className={`${styles.browseBtn} mr-2`}>
                 <Button onClick={()=>fileRef.current?.click()}>Browse</Button>
             </div>
