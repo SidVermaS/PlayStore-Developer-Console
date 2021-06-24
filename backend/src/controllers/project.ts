@@ -62,10 +62,10 @@ export const update=async (req: Request<any>, res: Response<any>)=>  {
                 if(updatedProject)  {
                     return res.status(200).json({message: 'Successfully updated the project', project: updatedProject})
                 }   else    {
-                    return res.status(400).json({message: '1 Failed to update the project'})
+                    return res.status(400).json({message: 'Failed to update the project'})
                 }
             }   else    {
-                return res.status(400).json({message: '2 Failed to update the project'})
+                return res.status(400).json({message: 'Failed to update the project'})
             }
         }   else    {
             return res.status(400).json({message: 'New version should be lesser than the old version', })
