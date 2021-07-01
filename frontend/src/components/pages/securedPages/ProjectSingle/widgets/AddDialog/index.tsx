@@ -10,8 +10,6 @@ import * as Yup from 'yup'
 import semver from 'semver'
 import {TextFieldPrimary, FileInput,} from '../../../../../widgets'
 import {versionNoYup} from '../../../../../../utilities/forms/yupObject'
-import styles from './index.module.scss'
-
 interface AddDialogProps {
     toggle: Function
 }
